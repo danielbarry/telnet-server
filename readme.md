@@ -13,7 +13,19 @@
 
 ## (2) Environment
 
-**TODO:** Write section.
+You will need to install the following programs:
+
+    sudo apt-get install cmake g++
+
+The following programs are recommended but not required:
+
+    sudo apt-get install git
+
+These programs are not required but recommended if no alternative exists:
+
+  * `git-gui` - Allows for git commits to be visualised.
+  * `gitk` - Allows for git branches to be visualised.
+  * `vim` - Text editor.
 
 ## (3) Building
 
