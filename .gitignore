@@ -1,0 +1,8 @@
+CMakeCache.txt
+Makefile
+TeleS
+
+*.cmake
+*.pdf
+
+CMakeFiles/**
