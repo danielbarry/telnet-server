@@ -55,4 +55,4 @@ For example, for a dual core machine you may want to write `make -j3` to get the
 
 ## (4) About
 
-**TODO:** Write section.
+Written by Daniel Barry, April 2016.
