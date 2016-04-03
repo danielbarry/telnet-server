@@ -9,7 +9,13 @@
 
 ## (1) Introduction
 
-**TODO:** Write section.
+### What is this program?
+
+Here we have a completely unnecessary, but very cool way of delivering web content to the web.
+
+### History
+
+This program was conceived and written in April, 2016. After the Wikipedia April Fools joke with pages served in telnet, I want to do the same for my pages where all HTML tags are simply ignored. This way only content is displayed in the simplest way possible.
 
 ## (2) Environment
 
