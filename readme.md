@@ -131,6 +131,21 @@ implemented:
 If you are able to implement an API in other languages, please contact me via
 the information found in other places of this documentation.
 
+## (6) Testing
+
+Testing is to be done via multiple methods:
+
+  * **API** - The API will provide testing of the main core, but will also
+  require test coverage itself in order to make sure these align. This will be
+  done where possible.
+  * **Static Coverage** - Static coverage will be used where possible to detect
+  issues that may occur whilst the program is being run.
+  * **Test Cases** - Every method in the core where possible should be tested,
+  other than the low risk entry and exit points of the code where it is
+  expected they should work. This should dramatically reduce the risk of
+  running issues.
+
+## (7) Bugs
 
 If you detect any bugs, please check the following lists before sending a
 report.
