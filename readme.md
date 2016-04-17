@@ -176,14 +176,32 @@ If your bug is not listed, please contact one of the following accounts:
 
   * `danbarry16@googlemail.com`
 
-## (5) About
+## (8) Tasks
+
+The following is a list of tasks yet to be completed for the project:
+
+    |---|-----|------------|--------|-----------------------------------------|
+    | # | Dne | Date       | Owner  | Description                             |
+    |---|-----|------------|--------|-----------------------------------------|
+    | 0 | [ ] | 17/04/2016 | DBARRY | Write the main server to accept telnet  |
+    |   |     |            |        | connections.                            |
+    |---|-----|------------|--------|-----------------------------------------|
+    | 1 | [ ] | 17/04/2016 | DBARRY | Server display information to           |
+    |   |     |            |        | requester.                              |
+    |---|-----|------------|--------|-----------------------------------------|
+    | 2 | [ ] | 17/04/2016 | DBARRY | Server accept characters from           |
+    |   |     |            |        | requester.                              |
+    |---|-----|------------|--------|-----------------------------------------|
+    | 3 | [ ] | 17/04/2016 | DBARRY | Write test cases for the code.          |
+    |---|-----|------------|--------|-----------------------------------------|
+    | 4 | [ ] | 17/04/2016 | DBARRY | Write c++ API.                          |
+    |---|-----|------------|--------|-----------------------------------------|
+
+## (9) About
+
+         _
+     _ _|_|
+    |_|_|_|
+    |_| |_|
 
 Written by Daniel Barry, April 2016.
-
-             ___
-            |   |
-     _______|___|
-    |   |   |   |
-    |___|___|___|
-    |   |   |   |
-    |___|   |___|
