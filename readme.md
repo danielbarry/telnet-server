@@ -9,13 +9,21 @@
 
 (1) Introduction
 
-(2) Environment
+(2) Use
 
-(3) Building
+(3) Environment
 
-(4) Bugs
+(4) Building
 
-(5) About
+(5) API
+
+(6) Testing
+
+(7) Bugs
+
+(8) Tasks
+
+(9) About
 
 ## (1) Introduction
 
