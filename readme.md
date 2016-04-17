@@ -90,7 +90,7 @@ These programs are not required but recommended if no alternative exists:
   * `gitk` - Allows for git branches to be visualised.
   * `vim` - Text editor.
 
-## (3) Building
+## (4) Building
 
 ### First Build
 
