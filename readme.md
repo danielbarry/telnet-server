@@ -48,7 +48,23 @@ April Fools joke with pages served in `telnet`, I want to do the same for my
 pages where all HTML tags are simply ignored. This way only content is
 displayed in the simplest way possible.
 
-## (2) Environment
+## (2) Use
+
+To use the program, you can run it as follows:
+
+    teles <PORT> <DIR>
+
+  * `teles` - The program itself.
+  * `<PORT>` - The port to run the server on.
+  * `<DIR>` - The directory to serve the files from.
+
+An example of how the program can be run is the following:
+
+    teles 23 www
+
+Other settings will be settable in the configuration file at a later date.
+
+## (3) Environment
 
 You will need to install the following programs:
 
