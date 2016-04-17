@@ -121,7 +121,16 @@ plus 1.
 For example, for a dual core machine you may want to write `make -j3` to get
 the most out of your CPU.
 
-## (4) Bugs
+## (5) API
+
+The API is yet to be written. The following are the planned languages to be
+implemented:
+
+  * `c++`
+
+If you are able to implement an API in other languages, please contact me via
+the information found in other places of this documentation.
+
 
 If you detect any bugs, please check the following lists before sending a
 report.
