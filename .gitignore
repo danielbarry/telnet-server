@@ -4,5 +4,6 @@ TeleS
 
 *.cmake
 *.pdf
+*.swp
 
 CMakeFiles/**
