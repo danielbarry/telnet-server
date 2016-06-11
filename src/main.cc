@@ -1,7 +1,9 @@
 #include "main.hh"
 
 int main(int argc, char** argv){
-  /* TODO: Write code here. */
+  /* Default values */
+  int port = 3333;
+  long timeout = 2000;
   return 0;
 }
 
