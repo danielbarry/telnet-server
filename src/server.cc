@@ -17,10 +17,13 @@ Server::Server(int port, long timeout){
   if(sockfd < 0){
     Main::error("Failed to open socket.");
   }
+  /* Zero the server definition structure */
   bzero((char*)&serv_addr, sizeof(serv_addr));
+  /* Set the server values */
   serv_addr.sin_family = AF_INET;
   serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
   serv_addr.sin_port = htons(serverPort);
+  /* Bind and report an binding error */
   if(bind(sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0){
     Main::error("Failed to bond socket.");
   }
@@ -32,26 +35,37 @@ Server::~Server(){
 }
 
 void Server::loop(){
+  /* Pre-define input buffer */
   char buffer[256];
+  /* Setup the server's running loop */
   bool running = true;
   while(running){
     /* TODO: Implement client on separate thread. */
+    /* Listen on the socket */
     listen(sockfd, 5);
+    /* Accept the next client connection */
     struct sockaddr cli_addr;
     socklen_t clilen = sizeof(cli_addr);
     int newsockfd = accept(sockfd, (struct sockaddr*)&cli_addr, &clilen);
+    /* Make sure we were able to bind to the client */
     if(newsockfd < 0){
       Main::error("Failed to bind to client.");
     }
+    /* Zero out the buffer we read from the client */
     bzero(buffer, 256);
+    /* Read bytes from client */
     int n = read(newsockfd, buffer, 255);
+    /* Make sure the read didn't return an error */
     if(n < 0){
       Main::error("Failed to read from client");
     }
+    /* Write bytes to the client */
     n = write(newsockfd, "I got your message", 18);
+    /* Make sure the write didn't return an error */
     if(n < 0){
       Main::error("Failed to write to client");
     }
+    /* Close the client socket */
     close(newsockfd);
   }
 }
