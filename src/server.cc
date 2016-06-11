@@ -1,9 +1,10 @@
 #include "server.hh"
 
+#include "config.hh"
 #include <string.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <unistd.h>
 
 Server::Server(int port, long timeout){
   /* Define socket address */
@@ -35,12 +36,12 @@ Server::~Server(){
 }
 
 void Server::loop(){
-  /* Pre-define input buffer */
-  char buffer[256];
   /* Setup the server's running loop */
   bool running = true;
   while(running){
     /* TODO: Implement client on separate thread. */
+    /* Pre-define input buffer */
+    char buffer[DEFAULT_BUFFER_SIZE];
     /* Listen on the socket with a maximum backlog of 5 connections */
     listen(sockfd, 5);
     /* Accept the next client connection */
@@ -52,9 +53,9 @@ void Server::loop(){
       Main::error("Failed to bind to client.");
     }
     /* Zero out the buffer we read from the client */
-    bzero(buffer, 256);
+    bzero(buffer, DEFAULT_BUFFER_SIZE);
     /* Read bytes from client */
-    int n = read(newsockfd, buffer, 255);
+    int n = read(newsockfd, buffer, DEFAULT_BUFFER_READ);
     /* Make sure the read didn't return an error */
     if(n < 0){
       Main::error("Failed to read from client");
