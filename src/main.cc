@@ -6,5 +6,5 @@ int main(int argc, char** argv){
 }
 
 void Main::error(std::string msg){
-  std::cout << "[!!]" << msg;
+  std::cout << "[!!]" << msg << "\n";
 }
