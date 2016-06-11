@@ -1,9 +1,11 @@
 #include "server.hh"
 
+#include "client.cc"
 #include "config.hh"
 #include <string.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include "pthread.h"
 #include <unistd.h>
 
 Server::Server(int port, long timeout){
@@ -13,9 +15,10 @@ Server::Server(int port, long timeout){
   serverPort = port;
   serverTimeout = timeout;
   /* Create server  */
-  sockfd = socket(AF_INET, SOCK_STREAM, 0);
+  sockfd = (int*)malloc(sizeof(int));
+  *sockfd = socket(AF_INET, SOCK_STREAM, 0);
   /* Check to see if the socket was opened */
-  if(sockfd < 0){
+  if(*sockfd < 0){
     Main::error("Failed to open socket.");
   }
   /* Zero the server definition structure */
@@ -25,48 +28,30 @@ Server::Server(int port, long timeout){
   serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
   serv_addr.sin_port = htons(serverPort);
   /* Bind and report an binding error */
-  if(bind(sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0){
+  if(bind(*sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0){
     Main::error("Failed to bond socket.");
   }
 }
 
 Server::~Server(){
   /* Close main Server socket */
-  close(sockfd);
+  close(*sockfd);
 }
 
-void Server::loop(){
+void Server::run(){
+  /* Listen on the socket with a maximum backlog of 5 connections */
+  listen(*sockfd, 5);
+  /* Setup the Client class */
+  Client::init(sockfd);
   /* Setup the server's running loop */
   bool running = true;
   while(running){
-    /* TODO: Implement client on separate thread. */
-    /* Pre-define input buffer */
-    char buffer[DEFAULT_BUFFER_SIZE];
-    /* Listen on the socket with a maximum backlog of 5 connections */
-    listen(sockfd, 5);
+    //Main::error("Waiting for new...");
     /* Accept the next client connection */
-    struct sockaddr cli_addr;
-    socklen_t clilen = sizeof(cli_addr);
-    int newsockfd = accept(sockfd, (struct sockaddr*)&cli_addr, &clilen);
-    /* Make sure we were able to bind to the client */
-    if(newsockfd < 0){
-      Main::error("Failed to bind to client.");
-    }
-    /* Zero out the buffer we read from the client */
-    bzero(buffer, DEFAULT_BUFFER_SIZE);
-    /* Read bytes from client */
-    int n = read(newsockfd, buffer, DEFAULT_BUFFER_READ);
-    /* Make sure the read didn't return an error */
-    if(n < 0){
-      Main::error("Failed to read from client");
-    }
-    /* Write bytes to the client */
-    n = write(newsockfd, "I got your message", 18);
-    /* Make sure the write didn't return an error */
-    if(n < 0){
-      Main::error("Failed to write to client");
-    }
-    /* Close the client socket */
-    close(newsockfd);
+    Client client;
+    //client->run(); // TODO: Remove line.
+    pthread_t t;
+    pthread_create(&t, 0, &Client::threadLauncher, &client);
+    pthread_detach(t);
   }
 }
