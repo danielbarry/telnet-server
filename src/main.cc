@@ -10,7 +10,7 @@ int main(int argc, char** argv){
   /* TODO: Accept command line arguments. */
   /* Create a new Server object and run it */
   Server* server = new Server(port, timeout);
-  server->loop();
+  server->run();
   return 0;
 }
 
