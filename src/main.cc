@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv){
   /* Default values */
-  int port = 3333;
+  int port = 23;
   long timeout = 2000;
   /* TODO: Accept command line arguments. */
   /* Create a new Server object and run it */
