@@ -41,7 +41,7 @@ void Server::loop(){
   bool running = true;
   while(running){
     /* TODO: Implement client on separate thread. */
-    /* Listen on the socket */
+    /* Listen on the socket with a maximum backlog of 5 connections */
     listen(sockfd, 5);
     /* Accept the next client connection */
     struct sockaddr cli_addr;
