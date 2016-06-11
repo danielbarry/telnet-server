@@ -13,11 +13,19 @@ if(CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_EXE_LINKER_FLAGS "-Wl,--gc-sections -s -R .comment -R .gnu.version --strip-unneeded")
 endif()
 
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11 -pthread")
+
 # The project name
-project(TeleS)
+project(TeleS C CXX)
+
+# Define package to be linked
+find_package(Threads REQUIRED)
 
 # The file to start compiling with
 add_executable(TeleS src/main.cc)
+
+# Links the libraries
+target_link_libraries(TeleS ${CMAKE_THREAD_LIBS_INIT})
 
 set(src_md readme.md)
 
