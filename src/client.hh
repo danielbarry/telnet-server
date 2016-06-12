@@ -1,6 +1,7 @@
 #ifndef CLIENT_HH
   #define CLIENT_HH
 
+  #include <string.h>
   #include <sys/types.h>
 
   /**
@@ -16,6 +17,11 @@
    **/
   class Client{
     public:
+      static std::string MSG_ABOUT;
+      static std::string MSG_BUGS;
+      static std::string MSG_HELP;
+      static std::string MSG_HOME;
+      static std::string MSG_UNKNOWN;
       static int* serverSockfd;
       static socklen_t clilen;
       struct sockaddr cli_addr;
@@ -60,6 +66,41 @@
        * root access if care is not taken.
        **/
       void* run();
+
+      /**
+       * about()
+       *
+       * Displays information about the program.
+       **/
+      void about();
+
+      /**
+       * bugs()
+       *
+       * Displays bugs information for the program.
+       **/
+      void bugs();
+
+      /**
+       * help()
+       *
+       * Displays help information for the program.
+       **/
+      void help();
+
+      /**
+       * home()
+       *
+       * Displays home information for the program.
+       **/
+      void home();
+
+      /**
+       * unknown()
+       *
+       * Displays an unknown command message.
+       **/
+      void unknown();
 
       /**
        * threadLauncher()

@@ -3,16 +3,40 @@
 #include "config.hh"
 #include <fstream>
 #include <iostream>
-#include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
 
+std::string Client::MSG_ABOUT;
+std::string Client::MSG_BUGS;
+std::string Client::MSG_HELP;
+std::string Client::MSG_HOME;
+std::string Client::MSG_UNKNOWN;
 int* Client::serverSockfd;
 socklen_t Client::clilen;
 
 void Client::init(int* sockfd){
   serverSockfd = sockfd;
   clilen = sizeof(cli_addr);
+  MSG_ABOUT = "Program written by B[].\n";
+  MSG_BUGS = "# Bugs\n";
+  MSG_BUGS.append("\n");
+  MSG_BUGS.append("  * None currently\n");
+  MSG_HELP = "# Help\n";
+  MSG_HELP.append("\n");
+  MSG_HELP.append("  * `blog` - Opens a blog entry\n");
+  MSG_HELP.append("  * `bugs` - Lists the program bugs list\n");
+  MSG_HELP.append("  * `chat` - The chat room\n");
+  MSG_HELP.append("  * `exit` - Quits the session\n");
+  MSG_HELP.append("  * `help` - Displays this help\n");
+  MSG_HELP.append("  * `home` - Displays welcome page\n");
+  MSG_HELP.append("  * `kill` - Quits the session\n");
+  MSG_HELP.append("  * `proj` - Opens a project entry\n");
+  MSG_HELP.append("  * `soft` - Opens a software entry\n");
+  MSG_HELP.append("  * `todo` - Lists the program TODO list\n");
+  MSG_HELP.append("  * `quit` - Quits the session\n");
+  MSG_HELP.append("  * `????` - About the program\n");
+  MSG_HOME = "Welcome to CoffeeSpace. Type `help` for more options.\n";
+  MSG_UNKNOWN = "Unknown command.\n";
 }
 
 Client::Client(){
@@ -27,37 +51,93 @@ void* Client::run(){
   if(clientSocketid < 0){
     Main::error("Failed to bind to client.");
   }
-  /* Read bytes from client */
-  int n = read(clientSocketid, buffer, DEFAULT_BUFFER_READ);
-  /* Make sure the read didn't return an error */
-  if(n < 0){
-    Main::error("Failed to read from client.");
-  }else{
-    /* TODO: Sanitise the input. */
-    buffer[n - 2] = '\0';
-    std::ifstream file(buffer);
-    if(file.is_open()){
-      std::string line;
-      while(getline(file, line)){
-        line += "\n";
-        std::cout << line;
-        write(clientSocketid, line.data(), line.size());
-      }
-      file.close();
+  bool running = true;
+  while(running){
+    /* Write prompt */
+    write(clientSocketid, "> ", 2);
+    /* Read bytes from client */
+    int n = read(clientSocketid, buffer, DEFAULT_BUFFER_READ);
+    /* Make sure the read didn't return an error */
+    if(n < 0){
+      Main::error("Failed to read from client.");
     }else{
-      Main::error("Unable to open file.");
+      /* TODO: Sanitise the input. */
+      buffer[n - 2] = '\0';
+      std::string str(buffer);
+      if(str.compare("") == 0){
+        home();
+      }else if(str.compare("blog") == 0){
+        write(clientSocketid, "TODO: Build this section.\n", 26);
+      }else if(str.compare("bugs") == 0){
+        bugs();
+      }else if(str.compare("chat") == 0){
+        write(clientSocketid, "TODO: Build this section.\n", 26);
+      }else if(str.compare("exit") == 0){
+        running = false;
+      }else if(str.compare("help") == 0){
+        help();
+      }else if(str.compare("home") == 0){
+        write(clientSocketid, "TODO: Build this section.\n", 26);
+      }else if(str.compare("kill") == 0){
+        running = false;
+      }else if(str.compare("proj") == 0){
+        write(clientSocketid, "TODO: Build this section.\n", 26);
+      }else if(str.compare("soft") == 0){
+        write(clientSocketid, "TODO: Build this section.\n", 26);
+      }else if(str.compare("todo") == 0){
+        write(clientSocketid, "TODO: Build this section.\n", 26);
+      }else if(str.compare("quit") == 0){
+        running = false;
+      }else if(str.compare("????") == 0){
+        about();
+      }else{
+        unknown();
+        home();
+      }
+      //std::ifstream file(buffer);
+      //if(file.is_open()){
+      //  std::string line;
+      //  while(getline(file, line)){
+      //    line += "\n";
+      //    write(clientSocketid, line.data(), line.size());
+      //  }
+      //  file.close();
+      //}else{
+      //  Main::error("Unable to open file.");
+      //}
+    }
+    /* Make sure the write didn't return an error */
+    if(n < 0){
+      Main::error("Failed to write to client.");
+      running = false;
     }
   }
-  /* Write bytes to the client */
-  n = write(clientSocketid, "I got your message", 18);
-  /* Make sure the write didn't return an error */
-  if(n < 0){
-    Main::error("Failed to write to client.");
-  }
+  /* Display connection close message */
+  write(clientSocketid, "\nClosed connection.\n", 20);
   /* Close the client socket */
   close(clientSocketid);
   /* Return message for successful run */
   return 0;
+}
+
+void Client::about(){
+  write(clientSocketid, MSG_ABOUT.data(), MSG_ABOUT.size());
+}
+
+void Client::bugs(){
+  write(clientSocketid, MSG_BUGS.data(), MSG_BUGS.size());
+}
+
+void Client::help(){
+  write(clientSocketid, MSG_HELP.data(), MSG_HELP.size());
+}
+
+void Client::home(){
+  write(clientSocketid, MSG_HOME.data(), MSG_HOME.size());
+}
+
+void Client::unknown(){
+  write(clientSocketid, MSG_UNKNOWN.data(), MSG_UNKNOWN.size());
 }
 
 void* Client::threadLauncher(void* context){
