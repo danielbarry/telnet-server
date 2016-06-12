@@ -81,7 +81,8 @@ void* Client::run(){
     if(n < 0){
       Main::error("Failed to read from client.");
     }else{
-      buffer[n - 2] = '\0';
+      /* Set the end to a fixed place for the size of the command */
+      buffer[4] = '\0';
       std::string str(buffer);
       if(str.compare("") == 0){
         home();
