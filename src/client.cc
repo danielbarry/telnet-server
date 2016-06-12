@@ -1,6 +1,9 @@
 #include "client.hh"
 
 #include "config.hh"
+#include <fstream>
+#include <iostream>
+#include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
 
@@ -29,6 +32,21 @@ void* Client::run(){
   /* Make sure the read didn't return an error */
   if(n < 0){
     Main::error("Failed to read from client.");
+  }else{
+    /* TODO: Sanitise the input. */
+    buffer[n - 2] = '\0';
+    std::ifstream file(buffer);
+    if(file.is_open()){
+      std::string line;
+      while(getline(file, line)){
+        line += "\n";
+        std::cout << line;
+        write(clientSocketid, line.data(), line.size());
+      }
+      file.close();
+    }else{
+      Main::error("Unable to open file.");
+    }
   }
   /* Write bytes to the client */
   n = write(clientSocketid, "I got your message", 18);
