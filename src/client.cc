@@ -90,7 +90,10 @@ void* Client::run(){
         if(n <= 6){
           open(DIR_ROOT, FLE_BLOG, EXT_HTML);
         }else{
-          /* TODO: Handle this case. */
+          memcpy(tmp, &buffer[5], n - 6);
+          tmp[n - 7] = '\0';
+          str = tmp;
+          open(DIR_BLOG, str, EXT_HTML);
         }
       }else if(str.compare("bugs") == 0){
         bugs();
@@ -112,13 +115,19 @@ void* Client::run(){
         if(n <= 6){
           open(DIR_ROOT, FLE_PROJ, EXT_HTML);
         }else{
-          /* TODO: Handle this case. */
+          memcpy(tmp, &buffer[5], n - 6);
+          tmp[n - 7] = '\0';
+          str = tmp;
+          open(DIR_PROJ, str, EXT_HTML);
         }
       }else if(str.compare("soft") == 0){
         if(n <= 6){
           open(DIR_ROOT, FLE_SOFT, EXT_HTML);
         }else{
-          /* TODO: Handle this case. */
+          memcpy(tmp, &buffer[5], n - 6);
+          tmp[n - 7] = '\0';
+          str = tmp;
+          open(DIR_SOFT, str, EXT_HTML);
         }
       }else if(str.compare("todo") == 0){
         write(clientSocketid, "TODO: Build this section.\n", 26);
