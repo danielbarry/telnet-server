@@ -135,7 +135,7 @@ void Client::home(){
 
 void Client::open(std::string dir, std::string filename, std::string ext){
   /* TODO: Make sure filename is safe. */
-  std::ifstream file(buffer);
+  std::ifstream file(dir + filename + ext);
   if(file.is_open()){
     std::string line;
     while(getline(file, line)){
