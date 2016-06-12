@@ -28,13 +28,13 @@ void* Client::run(){
   int n = read(clientSocketid, buffer, DEFAULT_BUFFER_READ);
   /* Make sure the read didn't return an error */
   if(n < 0){
-    Main::error("Failed to read from client");
+    Main::error("Failed to read from client.");
   }
   /* Write bytes to the client */
   n = write(clientSocketid, "I got your message", 18);
   /* Make sure the write didn't return an error */
   if(n < 0){
-    Main::error("Failed to write to client");
+    Main::error("Failed to write to client.");
   }
   /* Close the client socket */
   close(clientSocketid);
