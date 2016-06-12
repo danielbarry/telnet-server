@@ -89,6 +89,7 @@ void* Client::run(){
         if(n <= 6){
           open(DIR_ROOT, FLE_BLOG, EXT_HTML);
         }else{
+          /* TODO: Handle this case. */
         }
       }else if(str.compare("bugs") == 0){
         bugs();
