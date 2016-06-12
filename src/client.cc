@@ -70,7 +70,6 @@ void* Client::run(){
     if(n < 0){
       Main::error("Failed to read from client.");
     }else{
-      /* TODO: Sanitise the input. */
       buffer[n - 2] = '\0';
       std::string str(buffer);
       if(str.compare("") == 0){
@@ -135,6 +134,7 @@ void Client::home(){
 }
 
 void Client::open(std::string dir, std::string filename, std::string ext){
+  /* TODO: Make sure filename is safe. */
   std::ifstream file(buffer);
   if(file.is_open()){
     std::string line;
