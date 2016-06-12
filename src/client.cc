@@ -161,7 +161,18 @@ void Client::home(){
 }
 
 void Client::open(std::string dir, std::string filename, std::string ext){
-  /* TODO: Make sure filename is safe. */
+  /* Check filename for bad characters */
+  for(int x = 0; x < filename.size(); x++){
+    if(
+      filename[x] == '/' ||
+      filename[x] == '.' ||
+      filename[x] == '\\'
+    ){
+      Main::error("Invalid characters detected.");
+      return;
+    }
+  }
+  /* Attempt to open file */
   std::ifstream file(dir + filename + ext);
   if(file.is_open()){
     /* TODO: Replace this heavy function. */
