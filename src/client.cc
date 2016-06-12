@@ -79,7 +79,10 @@ void* Client::run(){
       if(str.compare("") == 0){
         home();
       }else if(str.compare("blog") == 0){
-        write(clientSocketid, "TODO: Build this section.\n", 26);
+        if(n <= 6){
+          open(DIR_ROOT, FLE_BLOG, EXT_HTML);
+        }else{
+        }
       }else if(str.compare("bugs") == 0){
         bugs();
       }else if(str.compare("chat") == 0){
