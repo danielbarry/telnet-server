@@ -53,9 +53,9 @@ void Client::init(int* sockfd){
   DIR_ROOT = "www/";
   DIR_SOFT = "www/software/";
   FLE_BLOG = "blogs";
-  FLE_BLOG = "projects";
-  FLE_BLOG = "index";
-  FLE_BLOG = "software";
+  FLE_PROJ = "reports";
+  FLE_ROOT = "index";
+  FLE_SOFT = "software";
   EXT_HTML = ".html";
 }
 
