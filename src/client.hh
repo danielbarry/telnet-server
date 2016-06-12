@@ -37,6 +37,7 @@
       int clientSocketid;
       int n;
       char buffer[DEFAULT_BUFFER_SIZE];
+      char tmp[DEFAULT_BUFFER_SIZE];
 
       /**
        * init()
