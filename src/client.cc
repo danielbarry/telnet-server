@@ -100,13 +100,25 @@ void* Client::run(){
       }else if(str.compare("help") == 0){
         help();
       }else if(str.compare("home") == 0){
-        write(clientSocketid, "TODO: Build this section.\n", 26);
+        if(n <= 6){
+          open(DIR_ROOT, FLE_ROOT, EXT_HTML);
+        }else{
+          /* TODO: Handle this case. */
+        }
       }else if(str.compare("kill") == 0){
         running = false;
       }else if(str.compare("proj") == 0){
-        write(clientSocketid, "TODO: Build this section.\n", 26);
+        if(n <= 6){
+          open(DIR_ROOT, FLE_PROJ, EXT_HTML);
+        }else{
+          /* TODO: Handle this case. */
+        }
       }else if(str.compare("soft") == 0){
-        write(clientSocketid, "TODO: Build this section.\n", 26);
+        if(n <= 6){
+          open(DIR_ROOT, FLE_SOFT, EXT_HTML);
+        }else{
+          /* TODO: Handle this case. */
+        }
       }else if(str.compare("todo") == 0){
         write(clientSocketid, "TODO: Build this section.\n", 26);
       }else if(str.compare("quit") == 0){
