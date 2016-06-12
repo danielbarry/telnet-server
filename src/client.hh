@@ -24,6 +24,7 @@
       static std::string MSG_UNKNOWN;
       static std::string DIR_BLOG;
       static std::string DIR_PROJ;
+      static std::string DIR_ROOT;
       static std::string DIR_SOFT;
       static int* serverSockfd;
       static socklen_t clilen;
