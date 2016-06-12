@@ -22,6 +22,9 @@
       static std::string MSG_HELP;
       static std::string MSG_HOME;
       static std::string MSG_UNKNOWN;
+      static std::string DIR_BLOG;
+      static std::string DIR_PROJ;
+      static std::string DIR_SOFT;
       static int* serverSockfd;
       static socklen_t clilen;
       struct sockaddr cli_addr;

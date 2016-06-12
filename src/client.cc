@@ -11,6 +11,9 @@ std::string Client::MSG_BUGS;
 std::string Client::MSG_HELP;
 std::string Client::MSG_HOME;
 std::string Client::MSG_UNKNOWN;
+std::string Client::DIR_BLOG;
+std::string Client::DIR_PROJ;
+std::string Client::DIR_SOFT;
 int* Client::serverSockfd;
 socklen_t Client::clilen;
 
@@ -37,6 +40,9 @@ void Client::init(int* sockfd){
   MSG_HELP.append("  * `????` - About the program\n");
   MSG_HOME = "Welcome to CoffeeSpace. Type `help` for more options.\n";
   MSG_UNKNOWN = "Unknown command.\n";
+  DIR_BLOG = "www/blogs/";
+  DIR_PROJ = "www/projects/";
+  DIR_SOFT = "www/software/";
 }
 
 Client::Client(){
