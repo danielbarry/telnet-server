@@ -99,6 +99,23 @@
       void home();
 
       /**
+       * open()
+       *
+       * Opens a file from a given directory and writes it to the socket.
+       *
+       * NOTE: This method should in theory be safe guarded against directory
+       *       traversal as the directory is fixed and cannot be changed. The
+       *       added measure of specifying the valid extension should also make
+       *       hacking difficult, only being able to load a safe type of file.
+       *
+       * @param dir The directory of the file.
+       * @param filename The name of the file in the specified directory
+       * without the extension.
+       * @param ext The extension of the file to be loaded.
+       **/
+      void open(std::string dir, std::string filename, std::string ext);
+
+      /**
        * unknown()
        *
        * Displays an unknown command message.

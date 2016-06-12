@@ -100,17 +100,6 @@ void* Client::run(){
         unknown();
         home();
       }
-      //std::ifstream file(buffer);
-      //if(file.is_open()){
-      //  std::string line;
-      //  while(getline(file, line)){
-      //    line += "\n";
-      //    write(clientSocketid, line.data(), line.size());
-      //  }
-      //  file.close();
-      //}else{
-      //  Main::error("Unable to open file.");
-      //}
     }
     /* Make sure the write didn't return an error */
     if(n < 0){
@@ -140,6 +129,20 @@ void Client::help(){
 
 void Client::home(){
   write(clientSocketid, MSG_HOME.data(), MSG_HOME.size());
+}
+
+void Client::open(std::string dir, std::string filename, std::string ext){
+  std::ifstream file(buffer);
+  if(file.is_open()){
+    std::string line;
+    while(getline(file, line)){
+      line += "\n";
+      write(clientSocketid, line.data(), line.size());
+    }
+    file.close();
+  }else{
+    Main::error("Unable to open file.");
+  }
 }
 
 void Client::unknown(){
