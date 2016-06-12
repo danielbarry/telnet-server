@@ -20,6 +20,7 @@ socklen_t Client::clilen;
 void Client::init(int* sockfd){
   serverSockfd = sockfd;
   clilen = sizeof(cli_addr);
+  /* TODO: Put these in the config file.  */
   MSG_ABOUT = "Program written by B[].\n";
   MSG_BUGS = "# Bugs\n";
   MSG_BUGS.append("\n");
