@@ -7,7 +7,6 @@
    * system.
    **/
   #define DEFAULT_PORT        23
-//  #define DEFAULT_PORT        3333
   #define DEFAULT_TIMEOUT     2000
   #define DEFAULT_BUFFER_SIZE 256
   #define DEFAULT_BUFFER_READ (DEFAULT_BUFFER_SIZE - 1)
