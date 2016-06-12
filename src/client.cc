@@ -1,5 +1,6 @@
 #include "client.hh"
 
+#include <algorithm>
 #include "config.hh"
 #include <fstream>
 #include <iostream>
@@ -150,10 +151,22 @@ void Client::open(std::string dir, std::string filename, std::string ext){
   /* TODO: Make sure filename is safe. */
   std::ifstream file(dir + filename + ext);
   if(file.is_open()){
+    /* TODO: Replace this heavy function. */
+    int numLines = std::count(
+      std::istreambuf_iterator<char>(file),
+      std::istreambuf_iterator<char>(),
+      '\n'
+    ) - DEFAULT_FILE_SKIP_E;
+    /* Reset file position back to the beginning */
+    file.seekg(0, file.beg);
     std::string line;
+    int lineCount = 0;
     while(getline(file, line)){
       line += "\n";
-      write(clientSocketid, line.data(), line.size());
+      if(lineCount >= DEFAULT_FILE_SKIP_F && lineCount < numLines){
+        write(clientSocketid, line.data(), line.size());
+      }
+      lineCount++;
     }
     file.close();
   }else{
