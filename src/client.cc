@@ -103,7 +103,7 @@ void* Client::run(){
         if(n <= 6){
           open(DIR_ROOT, FLE_ROOT, EXT_HTML);
         }else{
-          /* TODO: Handle this case. */
+          unknown();
         }
       }else if(str.compare("kill") == 0){
         running = false;
