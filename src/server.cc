@@ -7,6 +7,7 @@
 #include <sys/socket.h>
 #include "pthread.h"
 #include <unistd.h>
+#include <vector>
 
 Server::Server(int port, long timeout){
   /* Define socket address */
@@ -39,6 +40,9 @@ Server::~Server(){
 }
 
 void Server::run(){
+  /* Keep track of Clients */
+  std::vector<Client> clients;
+  int cIndex = 0;
   /* Listen on the socket with a maximum backlog of 5 connections */
   listen(*sockfd, 5);
   /* Setup the Client class */
@@ -46,12 +50,13 @@ void Server::run(){
   /* Setup the server's running loop */
   bool running = true;
   while(running){
-    //Main::error("Waiting for new...");
     /* Accept the next client connection */
-    Client client;
-    //client->run(); // TODO: Remove line.
+    clients.push_back(Client());
     pthread_t t;
-    pthread_create(&t, 0, &Client::threadLauncher, &client);
+    pthread_create(&t, 0, &Client::threadLauncher, &clients[cIndex]);
     pthread_detach(t);
+    /* Increment our client index in a circular buffer */
+    ++cIndex;
+    cIndex %= DEFAULT_MAX_CLIENTS;
   }
 }
