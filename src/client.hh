@@ -27,6 +27,9 @@
       static std::string DIR_ROOT;
       static std::string DIR_SOFT;
       static std::string FLE_BLOG;
+      static std::string FLE_PROJ;
+      static std::string FLE_ROOT;
+      static std::string FLE_SOFT;
       static std::string EXT_HTML;
       static int* serverSockfd;
       static socklen_t clilen;

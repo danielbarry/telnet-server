@@ -16,6 +16,9 @@ std::string Client::DIR_PROJ;
 std::string Client::DIR_ROOT;
 std::string Client::DIR_SOFT;
 std::string Client::FLE_BLOG;
+std::string Client::FLE_PROJ;
+std::string Client::FLE_ROOT;
+std::string Client::FLE_SOFT;
 std::string Client::EXT_HTML;
 int* Client::serverSockfd;
 socklen_t Client::clilen;
@@ -49,6 +52,9 @@ void Client::init(int* sockfd){
   DIR_ROOT = "www/";
   DIR_SOFT = "www/software/";
   FLE_BLOG = "blogs";
+  FLE_BLOG = "projects";
+  FLE_BLOG = "index";
+  FLE_BLOG = "software";
   EXT_HTML = ".html";
 }
 
