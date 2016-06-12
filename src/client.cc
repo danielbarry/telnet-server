@@ -145,6 +145,8 @@ void Client::open(std::string dir, std::string filename, std::string ext){
     file.close();
   }else{
     Main::error("Unable to open file.");
+    /* Display failure message to client */
+    unknown();
   }
 }
 
