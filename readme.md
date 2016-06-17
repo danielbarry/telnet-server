@@ -157,9 +157,13 @@ report.
     |---|-------|--------|----------------------------------------------------|
     | # | Ver   | Name   | Description                                        |
     |---|-------|--------|----------------------------------------------------|
-    | 0 | 0.0.0 | DBARRY | Example of bug layout to be used when reporting    |
-    |   |       |        | bugs. This format should be respected at all       |
-    |   |       |        | times.                                             |
+    | 1 | 0.0.0 | DBARRY | Windows doesn't do line feed                       |
+    |---|-------|--------|----------------------------------------------------|
+    | 2 | 0.0.0 | DBARRY | Windows sends characters as pressed                |
+    |---|-------|--------|----------------------------------------------------|
+    | 3 | 0.0.0 | DBARRY | Temp buffer unnecessary for array byte shift       |
+    |---|-------|--------|----------------------------------------------------|
+    | 4 | 0.0.0 | DBARRY | Remove BUGS list from client                       |
     |---|-------|--------|----------------------------------------------------|
 
 ### Fixed Bugs
