@@ -189,13 +189,13 @@ The following is a list of tasks yet to be completed for the project:
     |---|-----|------------|--------|-----------------------------------------|
     | # | Dne | Date       | Owner  | Description                             |
     |---|-----|------------|--------|-----------------------------------------|
-    | 0 | [ ] | 17/04/2016 | DBARRY | Write the main server to accept telnet  |
+    | 0 | [/] | 17/04/2016 | DBARRY | Write the main server to accept telnet  |
     |   |     |            |        | connections.                            |
     |---|-----|------------|--------|-----------------------------------------|
-    | 1 | [ ] | 17/04/2016 | DBARRY | Server display information to           |
+    | 1 | [/] | 17/04/2016 | DBARRY | Server display information to           |
     |   |     |            |        | requester.                              |
     |---|-----|------------|--------|-----------------------------------------|
-    | 2 | [ ] | 17/04/2016 | DBARRY | Server accept characters from           |
+    | 2 | [/] | 17/04/2016 | DBARRY | Server accept characters from           |
     |   |     |            |        | requester.                              |
     |---|-----|------------|--------|-----------------------------------------|
     | 3 | [ ] | 17/04/2016 | DBARRY | Write test cases for the code.          |
