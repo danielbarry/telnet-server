@@ -33,6 +33,7 @@ void Client::init(int* sockfd){
   MSG_BUGS.append("\n");
   MSG_BUGS.append("  * [ ] Windows doesn't do line feed\n");
   MSG_BUGS.append("  * [ ] Windows sends characters as pressed\n");
+  MSG_BUGS.append("  * [ ] Temp buffer unnecessary for array byte shift\n");
   MSG_HELP = "# Help\n";
   MSG_HELP.append("\n");
   MSG_HELP.append("  * `blog` - Opens a blog entry\n");
